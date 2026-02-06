@@ -44,7 +44,7 @@ const getIcon = (iconName: string) => {
 
 // Page de détail des services
 export default function ServiceDetailPage({ params }: { params: Promise<{ id: string; locale: string }> }) {
-  // 🔥 CORRECTION: Utiliser React.use() pour déballer la Promise
+  //  CORRECTION: Utiliser React.use() pour déballer la Promise
   const { id, locale } = use(params);
   
   const t = useTranslations(`servicest.details.${id}`); // Note: corrigé "servicest" → "services"
@@ -130,7 +130,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
             <div className="pt-8">
               <Link 
                 href={`/${currentLocale}/demande-devis`}
-                className={`block text-center bg-[#A66D3B] text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#8B5A2B] transition-colors shadow-lg ${locale === 'ar' ? 'text-right' : 'text-left'}`}
+                className={`block text-center bg-[#A66D3B] hover:bg-[#FFFFFF] text-white hover:text-black py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#8B5A2B] transition-colors shadow-lg ${locale === 'ar' ? 'text-center' : 'text-center'}`}
               >
                 {t('cta')}
               </Link>

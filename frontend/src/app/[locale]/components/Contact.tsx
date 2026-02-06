@@ -124,7 +124,7 @@ export default function ContactSection() {
               ></textarea>
               <button 
                 type="submit" 
-                className={`w-full bg-[#A66D3B] hover:bg-[#8B5A2B] text-white font-bold py-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg ${locale === 'ar' ? 'flex-row-reverse' : ''}`}
+                className={`w-full bg-[#A66D3B] hover:bg-[#FFFFFF] text-white hover:text-black font-bold py-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg ${locale === 'ar' ? 'flex-row-reverse' : ''}`}
               >
                 <span>
                   {t('form.submit')}

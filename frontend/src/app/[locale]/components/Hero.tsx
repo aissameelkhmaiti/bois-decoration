@@ -113,7 +113,7 @@ export default function HeroSection() {
           </h1>
 
           <Link href={`/${locale}/demande-devis`} className="inline-block">
-            <button className="group flex items-center space-x-3 bg-[#A66D3B] hover:bg-[#8B5A2B] text-white font-bold py-4 px-10 rounded-lg text-lg shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-widest">
+            <button className="group flex items-center space-x-3 bg-[#A66D3B] hover:bg-[#FFFFFF] text-white hover:text-black font-bold py-4 px-10 rounded-lg text-lg shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-widest">
               <span>{t('hero.cta')}</span>
               <FileText className="h-5 w-5 transition-transform group-hover:rotate-12" />
             </button>

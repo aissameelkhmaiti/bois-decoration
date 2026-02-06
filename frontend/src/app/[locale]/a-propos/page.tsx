@@ -108,7 +108,7 @@ export default function AboutDetailPage() {
             <div className="pt-8">
               <Link 
                 href={`/${locale}/demande-devis`}
-                className={`block text-center bg-[#2D2D2D] text-white py-5 rounded-lg font-bold uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-xl ${locale === 'ar' ? 'text-center' : 'text-center'}`}
+                className={`block text-center bg-[#2D2D2D] text-white py-5 rounded-lg font-bold uppercase tracking-[0.2em] hover:bg-[#FFFFFF] text-white hover:text-black transition-colors shadow-xl ${locale === 'ar' ? 'text-center' : 'text-center'}`}
               >
                 {t('cta')}
               </Link>

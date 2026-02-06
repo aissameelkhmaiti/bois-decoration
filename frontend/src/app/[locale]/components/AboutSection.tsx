@@ -37,7 +37,7 @@ export default function AboutSection() {
 
             {/* Lien vers la page À propos */}
             <Link href={`/${locale}/a-propos`}>
-              <button className="group flex items-center gap-2 bg-[#A66D3B] text-white px-8 py-3.5 rounded-sm hover:bg-[#8B5A2B] transition-all shadow-md mt-4">
+              <button className="group flex items-center gap-2 bg-[#A66D3B] hover:bg-[#FFFFFF] text-white hover:text-black px-8 py-3.5 rounded-sm hover:bg-[#8B5A2B] transition-all shadow-md mt-4">
                 <span className="text-sm font-semibold uppercase tracking-widest">
                   {t('cta')}
                 </span>

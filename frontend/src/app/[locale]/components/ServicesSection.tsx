@@ -100,7 +100,7 @@ export default function ServicesSection() {
         <div className="flex justify-center">
           <Link 
             href={`/${locale}/galerie`}
-            className={`group flex items-center gap-3 bg-[#2D2D2D] hover:bg-[#1a1a1a] text-white py-4 px-10 rounded-sm transition-all shadow-lg ${locale === 'ar' ? 'flex-row-reverse' : ''}`}
+            className={`group flex items-center gap-3 bg-[#2D2D2D] hover:bg-[#FFFFFF] text-white hover:text-black py-4 px-10 rounded-sm transition-all shadow-lg ${locale === 'ar' ? 'flex-row-reverse' : ''}`}
           >
             <ImageIcon className="w-5 h-5 text-[#A66D3B]" />
             <span className="font-semibold uppercase tracking-[0.2em] text-sm">
