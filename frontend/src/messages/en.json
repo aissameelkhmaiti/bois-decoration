@@ -1,0 +1,262 @@
+{
+  "nav": {
+    "title": "Decorna",
+    "language": "EN",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "Custom wood creations",
+    "title1": "Enhance Your Interior",
+    "title2": "& Exterior with Wood",
+    "cta": "Request a Quote"
+  },
+  "service": {
+    "interior": "Interior Design",
+    "terrace": "Terraces & Pergolas",
+    "furniture": "Custom Furniture"
+  },
+   "about": {
+    "title": "About us",
+    "heading": "Wood Artisans,",
+    "subheading": "Passion & Craftsmanship",
+    "description": "Unique creations for a warm and natural interior.",
+    "cta": "Learn more",
+    "imageAlt": "Craftsman working with wood"
+  },
+  "services": {
+    "sectionTitle": "Our Expertise",
+    "heading": {
+      "line1": "Artisanal services for",
+      "line2": "all your wood projects"
+    },
+    "subtitle": "Each piece is handcrafted with meticulous attention to detail.",
+    "services": {
+      "interior": {
+        "title": "Interior Decoration",
+        "description": "Custom creations to embellish your interior with elegance."
+      },
+      "exterior": {
+        "title": "Exterior Layout",
+        "description": "Terraces, pergolas, and wooden structures for your gardens."
+      },
+      "stairs": {
+        "title": "Stairs & Wardrobes",
+        "description": "Space optimization and precision joinery tailored to your needs."
+      },
+      "renovation": {
+        "title": "Wood Renovation",
+        "description": "Restoration of antique furniture and renewal of structures."
+      }
+    },
+    "serviceLink": "Service details",
+    "galleryLink": "Discover the Gallery"
+  },
+   "portfolio": {
+    "sectionTitle": "Transformation",
+    "heading": "Our Achievements",
+    "subtitle": "Wood brings your spaces back to life",
+    "before": {
+      "label": "Initial State",
+      "title": "Before",
+      "placeholder": "Photo of the old space",
+      "alt": "Space before transformation"
+    },
+    "after": {
+      "label": "After Work",
+      "title": "After",
+      "placeholder": "The final result",
+      "alt": "Space after transformation"
+    },
+    "footerNote": "Each project is a unique collaboration. We work with wood so it adapts to your story."
+  },
+   "testimonials": {
+    "heading": "Our Clients' Voice",
+    "testimonial": {
+      "quote": "A work of rare precision. Decorna managed to transform our vision into a reality exceeding our expectations. Our terrace has become the centerpiece of our home.",
+      "author": "Sophie M.",
+      "location": "Homeowner in Casablanca"
+    }
+  },
+   "contact": {
+    "heading": "Contact Us",
+    "description": "Have a project in mind? Let's talk about it together. We'll accompany you from design to installation.",
+    "phone": {
+      "label": "Phone",
+      "value": "+212 6 XX XX XX XX"
+    },
+    "email": {
+      "label": "Email",
+      "value": "contact@decorna.com"
+    },
+    "address": {
+      "label": "Workshop",
+      "value": "Tamaris, Casablanca, Morocco"
+    },
+    "form": {
+      "name": {
+        "placeholder": "Full name",
+        "label": "Name"
+      },
+      "email": {
+        "placeholder": "Email",
+        "label": "Email"
+      },
+      "subject": {
+        "placeholder": "Subject (ex: Terrace Quote)",
+        "label": "Subject"
+      },
+      "message": {
+        "placeholder": "Your message...",
+        "label": "Message"
+      },
+      "submit": "Send message"
+    }
+  },
+   "quote": {
+    "title": "Quote Request",
+    "subtitle": "Fill out the form below, we'll contact you quickly.",
+    "back": "Back",
+    "phone": "06 XX XX XX XX",
+    "form": {
+      "fullName": {
+        "label": "Full name",
+        "placeholder": "John Doe"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "06..."
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "example@mail.com"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Casablanca"
+      },
+      "projectType": {
+        "label": "Project type",
+        "placeholder": "Select a category",
+        "options": {
+          "kitchen": "Kitchen",
+          "livingRoom": "Living room",
+          "bedroom": "Bedroom",
+          "office": "Office",
+          "terrace": "Terrace",
+          "stairs": "Stairs",
+          "furniture": "Custom furniture",
+          "renovation": "Renovation",
+          "other": "Other"
+        }
+      },
+      "description": {
+        "label": "Project description",
+        "placeholder": "Describe your project in a few lines..."
+      },
+      "budget": {
+        "label": "Estimated budget (optional)",
+        "placeholder": "Ex: 5000 MAD"
+      },
+      "photos": {
+        "label": "Photos (optional)",
+        "button": "Attach photos"
+      },
+      "submit": "Send my quote request",
+      "responseTime": "Guaranteed response within 48h maximum"
+    },
+    "success": {
+      "title": "Thank you for your request!",
+      "message": "We have received your message. <br /> A member of our team will contact you within <span class=\"font-bold text-[#A66D3B]\">24 to 48 hours</span>.",
+      "urgent": "Urgent need?",
+      "back": "Back to home"
+    }
+  },
+   "common": {
+    "backToServices": "Back to services"
+  },
+  "servicest": {
+    "details": {
+      "interior-decoration": {
+        "title": "Interior Decoration",
+        "fullDescription": "Our interior decoration service transforms your living spaces into true works of art. We create unique solid wood pieces that perfectly integrate with your style and needs.",
+        "featuresTitle": "What we offer:",
+        "features": [
+          "Custom furniture",
+          "Wall bookshelves",
+          "Artisanal tables and chairs",
+          "Wooden decorative elements",
+          "Layout advice",
+          "Custom finishes"
+        ],
+        "cta": "Request a quote for this service"
+      },
+      "exterior-layout": {
+        "title": "Exterior Layout",
+        "fullDescription": "Enhance your outdoor spaces with our weather-resistant wood creations. Decks, pergolas, and garden furniture designed to last and beautify your space.",
+        "featuresTitle": "What we offer:",
+        "features": [
+          "Wooden decks",
+          "Pergolas and gazebos",
+          "Decorative fences",
+          "Garden furniture",
+          "Garden sheds",
+          "Autoclave treated wood"
+        ],
+        "cta": "Request a quote for this service"
+      },
+      "stairs-wardrobes": {
+        "title": "Stairs & Wardrobes",
+        "fullDescription": "Expertise in precision joinery for custom stairs and optimized storage solutions. Each project is designed to maximize available space.",
+        "featuresTitle": "What we offer:",
+        "features": [
+          "Custom stairs",
+          "Wooden guardrails",
+          "Built-in wardrobes",
+          "Custom closets",
+          "Sloped storage",
+          "Space optimization"
+        ],
+        "cta": "Request a quote for this service"
+      },
+      "wood-renovation": {
+        "title": "Wood Renovation",
+        "fullDescription": "Give a second life to your wooden furniture and structures. Our restoration expertise preserves the charm of the old while ensuring durability and functionality.",
+        "featuresTitle": "What we offer:",
+        "features": [
+          "Restoration of antique furniture",
+          "Sanding and varnishing",
+          "Structure repair",
+          "Wood treatment",
+          "Part replacement",
+          "Traditional finishes"
+        ],
+        "cta": "Request a quote for this service"
+      }
+    }
+  },
+   "aboutd": {
+    "back": "Back to home",
+    "title": "Our Story",
+    "imageAlt": "Our Workshop",
+    "quote": "Wood is not just a material, it's a soul that we sculpt for your home.",
+    "story": {
+      "part1": "For over 10 years, Decorna has established itself as a reference in artisanal joinery in Casablanca. Our adventure began in a small workshop, guided by a single obsession: the perfection of the line and respect for the wood fiber.",
+      "part2": "We select our wood species with absolute rigor, favoring sustainable sources to guarantee not only beauty, but also the longevity of every piece that leaves our workshop."
+    },
+    "values": {
+      "precision": {
+        "title": "Precision",
+        "description": "Millimeter-perfect work for impeccable finishes."
+      },
+      "durability": {
+        "title": "Durability",
+        "description": "Noble woods chosen to last for several generations."
+      },
+      "warranty": {
+        "title": "Warranty",
+        "description": "After-sales follow-up and a warranty on our structures."
+      }
+    },
+    "cta": "Start a project with us"
+  }
+}

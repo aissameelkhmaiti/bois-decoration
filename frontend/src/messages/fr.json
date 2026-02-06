@@ -1,0 +1,265 @@
+{
+  "nav": {
+    "title": "Decorna",
+    "language": "FR",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "Création sur mesure en bois",
+    "title1": "Sublimez Votre Intérieur",
+    "title2": "& Extérieur en Bois",
+    "cta": "Demander un Devis"
+  },
+  "service": {
+    "interior": "Aménagement Intérieur",
+    "terrace": "Terrasses & Pergolas",
+    "furniture": "Mobilier sur Mesure"
+  },
+  
+  "about": {
+    "title": "À propos de nous",
+    "heading": "Artisans du Bois,",
+    "subheading": "Passion & Savoir-Faire",
+    "description": "Des créations uniques pour un intérieur chaleureux et naturel.",
+    "cta": "En savoir plus",
+    "imageAlt": "Artisan travaillant le bois"
+  },
+   "services": {
+    "sectionTitle": "Notre Expertise",
+    "heading": {
+      "line1": "Des services artisanaux pour",
+      "line2": "tous vos projets en bois"
+    },
+    "subtitle": "Chaque pièce est travaillée à la main avec une attention particulière aux détails.",
+    "services": {
+      "interior": {
+        "title": "Décoration Intérieure",
+        "description": "Créations sur mesure pour embellir votre intérieur avec élégance."
+      },
+      "exterior": {
+        "title": "Aménagement Extérieur",
+        "description": "Terrasses, pergolas et structures bois pour vos jardins."
+      },
+      "stairs": {
+        "title": "Escaliers & Placards",
+        "description": "Optimisation d'espace et menuiserie de précision sur mesure."
+      },
+      "renovation": {
+        "title": "Rénovation Bois",
+        "description": "Restauration de meubles anciens et remise à neuf de structures."
+      }
+    },
+    "serviceLink": "Détails du service",
+    "galleryLink": "Découvrir la Galerie"
+  },
+    "portfolio": {
+    "sectionTitle": "Transformation",
+    "heading": "Nos Réalisations",
+    "subtitle": "Le bois redonne vie à vos espaces",
+    "before": {
+      "label": "État initial",
+      "title": "Avant",
+      "placeholder": "Photo de l'ancien espace",
+      "alt": "Espace avant transformation"
+    },
+    "after": {
+      "label": "Après Travaux",
+      "title": "Après",
+      "placeholder": "Le résultat final",
+      "alt": "Espace après transformation"
+    },
+    "footerNote": "Chaque projet est une collaboration unique. Nous travaillons le bois pour qu'il s'adapte à votre histoire."
+  },
+  "testimonials": {
+    "heading": "La voix de nos clients",
+    "testimonial": {
+      "quote": "Un travail d'une précision rare. Decorna a su transformer notre vision en une réalité dépassant nos attentes. Notre terrasse est devenue la pièce maîtresse de notre maison.",
+      "author": "Sophie M.",
+      "location": "Propriétaire à Casablanca"
+    }
+  },
+  "contact": {
+    "heading": "Contactez-nous",
+    "description": "Un projet en tête ? Parlons-en ensemble. Nous vous accompagnons de la conception à la pose.",
+    "phone": {
+      "label": "Téléphone",
+      "value": "+212 6 XX XX XX XX"
+    },
+    "email": {
+      "label": "Email",
+      "value": "contact@decorna.com"
+    },
+    "address": {
+      "label": "Atelier",
+      "value": "Tamaris, Casablanca, Maroc"
+    },
+    "form": {
+      "name": {
+        "placeholder": "Nom complet",
+        "label": "Nom"
+      },
+      "email": {
+        "placeholder": "Email",
+        "label": "Email"
+      },
+      "subject": {
+        "placeholder": "Sujet (ex: Devis Terrasse)",
+        "label": "Sujet"
+      },
+      "message": {
+        "placeholder": "Votre message...",
+        "label": "Message"
+      },
+      "submit": "Envoyer le message"
+    }
+  },
+
+  "quote": {
+    "title": "Demande de devis",
+    "subtitle": "Remplissez le formulaire ci-dessous, nous vous contacterons rapidement.",
+    "back": "Retour",
+    "phone": "06 XX XX XX XX",
+    "form": {
+      "fullName": {
+        "label": "Nom complet",
+        "placeholder": "Jean Dupont"
+      },
+      "phone": {
+        "label": "Téléphone",
+        "placeholder": "06..."
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "exemple@mail.com"
+      },
+      "city": {
+        "label": "Ville",
+        "placeholder": "Casablanca"
+      },
+      "projectType": {
+        "label": "Type de projet",
+        "placeholder": "Sélectionnez une catégorie",
+        "options": {
+          "kitchen": "Cuisine",
+          "livingRoom": "Salon",
+          "bedroom": "Chambre",
+          "office": "Bureau",
+          "terrace": "Terrasse",
+          "stairs": "Escaliers",
+          "furniture": "Mobilier sur mesure",
+          "renovation": "Rénovation",
+          "other": "Autre"
+        }
+      },
+      "description": {
+        "label": "Description du besoin",
+        "placeholder": "Décrivez votre projet en quelques lignes..."
+      },
+      "budget": {
+        "label": "Budget estimé (optionnel)",
+        "placeholder": "Ex: 5000 DH"
+      },
+      "photos": {
+        "label": "Photos (optionnel)",
+        "button": "Joindre des photos"
+      },
+      "submit": "Envoyer ma demande de devis",
+      "responseTime": "Réponse garantie sous 48h maximum"
+    },
+    "success": {
+      "title": "Merci pour votre demande !",
+      "message": "Nous avons bien reçu votre message. <br /> Un membre de notre équipe vous contactera sous <span class=\"font-bold text-[#A66D3B]\">24 à 48 heures</span>.",
+      "urgent": "Besoin urgent ?",
+      "back": "Retour à l'accueil"
+    }
+  },
+  "common": {
+    "backToServices": "Retour aux services"
+  },
+  "servicest": {
+    "details": {
+      "interior-decoration": {
+        "title": "Décoration Intérieure",
+        "fullDescription": "Notre service de décoration intérieure transforme vos espaces de vie en véritables œuvres d'art. Nous créons des pièces uniques en bois massif qui s'intègrent parfaitement à votre style et vos besoins.",
+        "featuresTitle": "Ce que nous proposons :",
+        "features": [
+          "Mobilier sur mesure",
+          "Bibliothèques murales",
+          "Tables et chaises artisanales",
+          "Éléments décoratifs en bois",
+          "Conseils en aménagement",
+          "Finitions personnalisées"
+        ],
+        "cta": "Demander un devis pour ce service"
+      },
+      "exterior-layout": {
+        "title": "Aménagement Extérieur",
+        "fullDescription": "Sublimez vos espaces extérieurs avec nos créations en bois résistant aux intempéries. Terrasses, pergolas, et mobilier de jardin conçus pour durer et embellir votre espace.",
+        "featuresTitle": "Ce que nous proposons :",
+        "features": [
+          "Terrasses en bois",
+          "Pergolas et tonnelles",
+          "Clôtures décoratives",
+          "Mobilier de jardin",
+          "Abris de jardin",
+          "Bois traité autoclave"
+        ],
+        "cta": "Demander un devis pour ce service"
+      },
+      "stairs-wardrobes": {
+        "title": "Escaliers & Placards",
+        "fullDescription": "Expertise en menuiserie de précision pour escaliers sur mesure et solutions de rangement optimisées. Chaque projet est conçu pour maximiser l'espace disponible.",
+        "featuresTitle": "Ce que nous proposons :",
+        "features": [
+          "Escaliers sur mesure",
+          "Garde-corps en bois",
+          "Placards encastrés",
+          "Dressings personnalisés",
+          "Rangements sous pente",
+          "Optimisation d'espace"
+        ],
+        "cta": "Demander un devis pour ce service"
+      },
+      "wood-renovation": {
+        "title": "Rénovation Bois",
+        "fullDescription": "Donnez une seconde vie à vos meubles et structures en bois. Notre expertise en restauration permet de préserver le charme de l'ancien tout en assurant durabilité et fonctionnalité.",
+        "featuresTitle": "Ce que nous proposons :",
+        "features": [
+          "Restauration de meubles anciens",
+          "Ponçage et vernissage",
+          "Réparation de structures",
+          "Traitement du bois",
+          "Remplacement de pièces",
+          "Finitions traditionnelles"
+        ],
+        "cta": "Demander un devis pour ce service"
+      }
+    }
+  },
+   "aboutd": {
+    "back": "Retour à l'accueil",
+    "title": "Notre Histoire",
+    "imageAlt": "Notre Atelier",
+    "quote": "Le bois n'est pas seulement un matériau, c'est une âme que nous sculptons pour votre foyer.",
+    "story": {
+      "part1": "Depuis plus de 10 ans, Decorna s'est imposé comme une référence de la menuiserie artisanale à Casablanca. Notre aventure a commencé dans un petit atelier, guidée par une seule obsession : la perfection du trait et le respect de la fibre.",
+      "part2": "Nous sélectionnons nos essences de bois avec une rigueur absolue, privilégiant des sources durables pour garantir non seulement la beauté, mais aussi la longévité de chaque pièce qui sort de notre atelier."
+    },
+    "values": {
+      "precision": {
+        "title": "Précision",
+        "description": "Un travail millimétré pour des finitions impeccables."
+      },
+      "durability": {
+        "title": "Durabilité",
+        "description": "Des bois nobles choisis pour durer plusieurs générations."
+      },
+      "warranty": {
+        "title": "Garantie",
+        "description": "Un suivi après-vente et une garantie sur nos structures."
+      }
+    },
+    "cta": "Démarrer un projet avec nous"
+  }
+
+}
