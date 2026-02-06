@@ -2,15 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copier package.json et package-lock.json
-COPY package*.json ./
-
 # Installer les dépendances
+COPY package*.json ./
 RUN npm install
 
-# Copier le reste des fichiers
+# Copier le reste
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+# IMPORTANT : écouter sur 0.0.0.0
+CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
