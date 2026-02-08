@@ -50,7 +50,7 @@ export default function AboutSection() {
           <div className={`relative h-[400px] md:h-[500px] w-full ${locale === 'ar' ? 'lg:order-first' : ''}`}>
             <div className="relative h-full w-full overflow-hidden shadow-2xl rounded-sm">
               <Image
-                src="/artisan-bois.png"
+                src="/Gemini_Generated_Image_6hh7cn6hh7cn6hh7.png"
                 alt={t('imageAlt')}
                 fill
                 className="object-cover"

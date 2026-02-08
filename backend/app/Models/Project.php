@@ -13,9 +13,12 @@ class Project extends Model
         'title',
         'slug',
         'description',
+        'client',
         'cover_image',
         'category_id'
     ];
+
+      protected $appends = ['cover_url'];
 
     public function category()
     {
@@ -26,4 +29,16 @@ class Project extends Model
     {
         return $this->hasMany(ProjectImage::class);
     }
+       public function getCoverUrlAttribute()
+    {
+        if (!$this->cover_image) {
+            return null;
+        }
+
+        // L'image est stockée dans storage/app/public/projects/covers/xxx.jpg
+        // Elle sera accessible via public/storage/projects/covers/xxx.jpg
+        return url('storage/' . $this->cover_image);
+    }
+
+      
 }
