@@ -1,8 +1,10 @@
-// src/types.ts
+// src/types/project.ts
+
 export interface ProjectImage {
   id: number;
   project_id: number;
-  image: string;
+  image: string; // Chemin relatif (ex: 'projects/gallery/xxx.png')
+  url: string;   // URL complète générée par Laravel (ex: 'http://localhost:8000/storage/projects/gallery/xxx.png')
   created_at: string;
   updated_at: string;
 }
@@ -27,4 +29,21 @@ export interface Project {
   created_at: string;
   updated_at: string;
   images: ProjectImage[];
+}
+
+// Type pour le formulaire de création/édition
+export interface ProjectFormData {
+  title: string;
+  description: string;
+  client: string;
+  category_id: string;
+}
+
+// Type pour les catégories dans le state Redux
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  created_at: string;
+  updated_at: string;
 }

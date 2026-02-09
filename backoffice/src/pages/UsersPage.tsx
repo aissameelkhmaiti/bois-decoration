@@ -2,45 +2,37 @@ import { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
-import { fetchUsers, deleteUser } from '../redux/usersSlice';
+import { fetchUsers, deleteUser,type User } from '../redux/usersSlice';
 import AddUserModal from '../components/users/AddUserModal';
 import EditUserModal from '../components/users/EditUserModal';
-import DeleteUserModal from '../components/users/DeleteModel'; // Correction du nom de l'import
+import DeleteUserModal from '../components/users/DeleteModel';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Person from '@mui/icons-material/Person';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  avatar?: string;
-}
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const UsersPage = () => {
   const dispatch = useAppDispatch();
-  const { users, loading } = useAppSelector((state) => state.users);
+  const { users, pagination, loading } = useAppSelector((state) => state.users);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
+  // Cycle de vie synchronisé avec le serveur (Recherche + Pagination)
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    const delayDebounceFn = setTimeout(() => {
+      dispatch(fetchUsers({ page: currentPage, search: searchTerm }));
+    }, 400);
 
-  const filteredUsers = useMemo(() => {
-    return users.filter((user: User) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [users, searchTerm]);
+    return () => clearTimeout(delayDebounceFn);
+  }, [dispatch, currentPage, searchTerm]);
 
   const handleEdit = (user: User) => {
     setSelectedUser(user);
@@ -60,10 +52,13 @@ const UsersPage = () => {
     }
   };
 
+  const totalPages = pagination?.last_page || 1;
+
   const SkeletonRow = () => (
     <tr className="animate-pulse">
       <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-3/4"></div></td>
       <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded-full w-16"></div></td>
+      <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-1/2"></div></td>
       <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-1/2"></div></td>
       <td className="px-6 py-4"><div className="flex justify-center gap-2"><div className="h-8 w-8 bg-gray-100 rounded-full"></div><div className="h-8 w-8 bg-gray-100 rounded-full"></div></div></td>
     </tr>
@@ -86,9 +81,12 @@ const UsersPage = () => {
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1); // Reset vers page 1 lors d'une recherche
+            }}
             placeholder="Rechercher un utilisateur..."
-            className="w-full bg-white border border-[#d7ccc8] text-sm rounded-xl focus:ring-4 focus:ring-[#A66D3B]/10 focus:border-[#A66D3B] block pl-10 p-3 outline-none transition-all shadow-sm"
+            className="w-full bg-white border border-[#d7ccc8] text-sm rounded-xl focus:border-[#A66D3B] focus:outline-none focus:ring-0 outline-none block pl-10 p-3 transition-all shadow-sm"
           />
         </div>
 
@@ -110,6 +108,7 @@ const UsersPage = () => {
                 <th className="px-6 py-4 text-[#A66D3B] font-bold text-xs uppercase tracking-widest">Nom</th>
                 <th className="px-6 py-4 text-[#A66D3B] font-bold text-xs uppercase tracking-widest">Rôle</th>
                 <th className="px-6 py-4 text-[#A66D3B] font-bold text-xs uppercase tracking-widest">Email</th>
+                <th className="px-6 py-4 text-[#A66D3B] font-bold text-xs uppercase tracking-widest">Statut</th>
                 <th className="px-6 py-4 text-[#A66D3B] font-bold text-xs uppercase tracking-widest text-center">Actions</th>
               </tr>
             </thead>
@@ -118,7 +117,7 @@ const UsersPage = () => {
                 [...Array(5)].map((_, i) => <SkeletonRow key={i} />)
               ) : (
                 <AnimatePresence mode="popLayout">
-                  {filteredUsers.map((row: User, index: number) => (
+                  {users.map((row: User, index: number) => (
                     <motion.tr
                       key={row.id}
                       initial={{ opacity: 0 }}
@@ -129,7 +128,6 @@ const UsersPage = () => {
                     >
                       <td className="px-6 py-4 text-gray-800 font-medium">
                         <div className="flex items-center gap-3">
-
                           {row.avatar ? (
                             <img
                               src={`http://localhost:8000/storage/${row.avatar}`}
@@ -141,7 +139,6 @@ const UsersPage = () => {
                               {row.name.charAt(0)}
                             </div>
                           )}
-
                           <span>{row.name}</span>
                         </div>
                       </td>
@@ -155,6 +152,15 @@ const UsersPage = () => {
                         </span>
                       </td>
                       <td className="px-6 py-4 text-gray-500 text-sm">{row.email}</td>
+
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold border ${row.status === 'actif' ? 'bg-green-50 text-green-700 border-green-100' :
+                            'bg-red-50 text-red-700 border-red-100'
+                          }`}>
+                          {row.status === 'actif' ? 'Actif' : 'Inactif'}
+                        </span>
+                      </td>
+
                       <td className="px-6 py-4 text-center">
                         <div className="flex justify-center gap-1">
                           <button onClick={() => handleEdit(row)} className="p-2.5 text-[#8d6e63] hover:text-[#A66D3B] hover:bg-[#A66D3B]/10 rounded-xl transition-all">
@@ -171,6 +177,51 @@ const UsersPage = () => {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* --- SECTION PAGINATION (S'intègre au style du tableau) --- */}
+        <div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="text-sm text-[#8c7365]">
+            Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
+          </span>
+        
+          <div className="flex items-center gap-1">
+            <button 
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
+              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+            >
+              <ChevronLeftIcon className="w-5 h-5" />
+            </button>
+        
+            <div className="flex items-center gap-1">
+              {[...Array(totalPages)].map((_, index) => {
+                const pageNum = index + 1;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all
+                      ${currentPage === pageNum 
+                        ? 'bg-[#a67c52] text-white shadow-sm' 
+                        : 'text-[#8c7365] hover:bg-[#f5ede8] border border-transparent hover:border-[#e2d5cd]'
+                      }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+        
+            <button 
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+            >
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="hidden sm:block w-[100px]"></div>
         </div>
       </div>
 

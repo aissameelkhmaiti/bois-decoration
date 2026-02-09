@@ -22,6 +22,7 @@ import CategoriesPage from '../pages/CategoriesPage';
 import ContactPage from '../pages/ContactPage';
 import ReviewsPage from '../pages/ReviewsPage';
 import DashboardHome from '../pages/DashboardHome';
+import Devis from '../pages/Devis';
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(true);
@@ -41,6 +42,7 @@ export default function DashboardLayout() {
     { text: "Vue d'ensemble", icon: <DashboardIcon fontSize="small" />, path: '' },
     { text: 'Clients', icon: <GroupIcon fontSize="small" />, path: 'users' },
     { text: 'Réalisations', icon: <WoodIcon fontSize="small" />, path: 'projects' },
+    { text: 'Demandes', icon: <StarIcon fontSize="small" />, path: 'devis' },
     { text: 'Collections', icon: <CategoryIcon fontSize="small" />, path: 'categories' },
     { text: 'Messages', icon: <MessageIcon fontSize="small" />, path: 'contact' },
     { text: 'Témoignages', icon: <StarIcon fontSize="small" />, path: 'reviews' },
@@ -203,6 +205,7 @@ export default function DashboardLayout() {
               <Route path="categories" element={<CategoriesPage />} />
               <Route path="contact" element={<ContactPage />} />
               <Route path="reviews" element={<ReviewsPage />} />
+              <Route path="devis" element={<Devis />} />
             </Routes>
           </motion.div>
         </main>

@@ -12,9 +12,21 @@ class AuthController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        return User::get();
+        $query = User::query();
+
+        // Filtrage par nom ou email
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Pagination (10 par défaut)
+        return $query->paginate(10);
     }
     public function register(Request $request)
     {
@@ -38,6 +50,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'status' => 'actif',
             'avatar' => $avatarPath,
         ]);
 
@@ -60,12 +73,21 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        // Vérifier si l'utilisateur existe et le mot de passe est correct
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
-                'message' => 'Invalid credentials'
+                'message' => 'Identifiants invalides'
             ], 401);
         }
 
+        // Vérifier si l'utilisateur est actif
+        if ($user->status !== 'actif') {
+            return response()->json([
+                'message' => 'Votre compte est inactif. Contactez l’administrateur.'
+            ], 403); // 403 Forbidden
+        }
+
+        // Création du token
         $token = $user->createToken('admin-token')->plainTextToken;
 
         return response()->json([
@@ -73,6 +95,7 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+
 
 
     public function me(Request $request)
@@ -90,6 +113,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required|string',
+            'status' => 'required|in:actif,inactif',
             'password' => ['nullable', Password::min(8)],
             'avatar' => 'sometimes|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
@@ -108,6 +132,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
+        $user->status = $request->status;
 
         // Mot de passe (optionnel)
         if ($request->filled('password')) {

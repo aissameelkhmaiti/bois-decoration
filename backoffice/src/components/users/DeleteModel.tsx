@@ -51,14 +51,14 @@ const DeleteUserModal = ({ isOpen, onClose, onConfirm, userName }: Props) => {
             <div className="flex justify-end gap-3">
               <button
                 onClick={onClose}
-                className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+                className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-black hover:text-white transition"
               >
                 Annuler
               </button>
 
               <button
                 onClick={onConfirm}
-                className="px-5 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition"
+                className="px-5 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-black transition"
               >
                 Supprimer
               </button>

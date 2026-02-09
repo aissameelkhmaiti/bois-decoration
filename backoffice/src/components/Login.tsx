@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+// Ajout de "Loader2" pour l'icône de chargement
+import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
@@ -8,6 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  // 1. Nouvel état pour gérer le chargement
+  const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,12 +18,16 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true); // 2. Activer le loader au début du submit
 
     try {
       await login(email, password);
       navigate('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Identifiants incorrects');
+      // 3. Désactiver le loader en cas d'erreur seulement 
+      // (car en cas de succès, on change de page)
+      setLoading(false);
     }
   };
 
@@ -58,9 +65,10 @@ export default function Login() {
                   <input
                     type="email"
                     required
+                    disabled={loading} // Désactiver l'input pendant le chargement
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-[#C4936A]/50 focus:ring-2 focus:ring-[#A66D3B] focus:border-transparent outline-none transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-[#C4936A]/50 focus:ring-2 focus:ring-[#A66D3B] focus:border-transparent outline-none transition-all disabled:opacity-50"
                     placeholder="admin@decorna.ma"
                   />
                 </div>
@@ -76,9 +84,10 @@ export default function Login() {
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required
+                    disabled={loading} // Désactiver l'input pendant le chargement
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-11 pr-11 py-3 rounded-xl border border-[#C4936A]/50 focus:ring-2 focus:ring-[#A66D3B] focus:border-transparent outline-none transition-all"
+                    className="w-full pl-11 pr-11 py-3 rounded-xl border border-[#C4936A]/50 focus:ring-2 focus:ring-[#A66D3B] focus:border-transparent outline-none transition-all disabled:opacity-50"
                     placeholder="••••••••"
                   />
                   <button
@@ -91,11 +100,20 @@ export default function Login() {
                 </div>
               </div>
 
+              {/* Bouton de soumission avec loader */}
               <button
                 type="submit"
-                className="w-full py-3.5 mt-4 bg-[#A66D3B] border-2 border-[#A66D3B] hover:bg-transparent text-white hover:text-[#A66D3B] font-bold rounded-xl shadow-lg transition-colors duration-200 text-base"
+                disabled={loading} // Empêcher le double-clic
+                className="w-full flex items-center justify-center py-3.5 mt-4 bg-[#A66D3B] border-2 border-[#A66D3B] hover:bg-transparent text-white hover:text-[#A66D3B] font-bold rounded-xl shadow-lg transition-colors duration-200 text-base disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Accéder au Dashboard
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Connexion en cours...
+                  </>
+                ) : (
+                  'Accéder au Dashboard'
+                )}
               </button>
             </form>
           </div>
