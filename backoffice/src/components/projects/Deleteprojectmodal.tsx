@@ -21,7 +21,7 @@ const DeleteProjectModal = ({ isOpen, onClose, project }: Props) => {
     setIsDeleting(true);
     try {
       await dispatch(deleteProject(project.id)).unwrap();
-      await dispatch(fetchProjects());
+      await dispatch(fetchProjects({}))
       onClose();
     } catch (err) {
       console.error(err);

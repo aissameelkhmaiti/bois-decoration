@@ -51,24 +51,15 @@
     "serviceLink": "Service details",
     "galleryLink": "Discover the Gallery"
   },
-   "portfolio": {
-    "sectionTitle": "Transformation",
-    "heading": "Our Achievements",
-    "subtitle": "Wood brings your spaces back to life",
-    "before": {
-      "label": "Initial State",
-      "title": "Before",
-      "placeholder": "Photo of the old space",
-      "alt": "Space before transformation"
-    },
-    "after": {
-      "label": "After Work",
-      "title": "After",
-      "placeholder": "The final result",
-      "alt": "Space after transformation"
-    },
+"portfolio": {
+    "sectionTitle": "Achievements",
+    "heading": "Latest Projects",
+    "subtitle": "Wood brings your spaces back to life through our craftsmanship.",
+    "viewAll": "Explore full gallery",
+    "discoverProject": "View project",
+    "noProjects": "No projects to display at the moment.",
     "footerNote": "Each project is a unique collaboration. We work with wood so it adapts to your story."
-  },
+},
    "testimonials": {
     "heading": "Our Clients' Voice",
     "testimonial": {
@@ -258,5 +249,28 @@
       }
     },
     "cta": "Start a project with us"
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "back": "Back to home",
+    "description": "Explore our achievements categorized by expertise. A unique craftsmanship for every project.",
+    "all": "All",
+    "empty": "No projects found at the moment.",
+    "loading": "Loading projects...",
+    "categories": {
+      "interior": "Interior Decoration",
+      "exterior": "Exterior Layout",
+      "stairs": "Stairs & Wardrobes",
+      "renovation": "Wood Renovation"
+    }
+  },
+  "project_detail": {
+    "loading": "Loading project...",
+    "not_found": "Project not found",
+    "back_to_gallery": "Back to gallery",
+    "category_label": "Category",
+    "client_label": "Client",
+    "about_project": "About the project",
+    "gallery_title": "Project Views"
   }
 }

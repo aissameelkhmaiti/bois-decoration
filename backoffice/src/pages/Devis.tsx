@@ -161,7 +161,7 @@ const QuotesPage: React.FC = () => {
           <span className="text-sm text-[#8c7365]">
             Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
           </span>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center  gap-1">
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(prev => prev - 1)}

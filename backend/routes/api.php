@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\QuoteController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Models\Quote; // <--- TRÈS IMPORTANT : Importez le modèle
 
 /*
@@ -12,13 +13,16 @@ use App\Models\Quote; // <--- TRÈS IMPORTANT : Importez le modèle
 | Public Routes (Client-side)
 |--------------------------------------------------------------------------
 */
-
+// Routes Publiques
+Route::get('/projects/front', [ProjectController::class, 'index']); // Accessible à tous
+Route::get('/categories/front', [CategoryController::class, 'index']); // Pour charger les filtres
 // Authentification
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/projects/front/{id}', [ProjectController::class, 'show']);
 
 // Devis (Quotes)
 Route::post('/quotes', [QuoteController::class, 'store']);
-
+Route::post('/reviews', [ReviewController::class, 'store']);
 // Route de Polling : Vérifie si le PDF est prêt
 Route::get('/quotes/{quote}/status', function (Quote $quote) {
     return response()->json([

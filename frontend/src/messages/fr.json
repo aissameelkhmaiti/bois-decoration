@@ -53,23 +53,14 @@
     "galleryLink": "Découvrir la Galerie"
   },
     "portfolio": {
-    "sectionTitle": "Transformation",
-    "heading": "Nos Réalisations",
-    "subtitle": "Le bois redonne vie à vos espaces",
-    "before": {
-      "label": "État initial",
-      "title": "Avant",
-      "placeholder": "Photo de l'ancien espace",
-      "alt": "Espace avant transformation"
-    },
-    "after": {
-      "label": "Après Travaux",
-      "title": "Après",
-      "placeholder": "Le résultat final",
-      "alt": "Espace après transformation"
-    },
+    "sectionTitle": "Réalisations",
+    "heading": "Derniers Projets",
+    "subtitle": "Le bois redonne vie à vos espaces à travers nos interventions artisanales.",
+    "viewAll": "Voir toute la galerie",
+    "discoverProject": "Découvrir le projet",
+    "noProjects": "Aucune réalisation à afficher pour le moment.",
     "footerNote": "Chaque projet est une collaboration unique. Nous travaillons le bois pour qu'il s'adapte à votre histoire."
-  },
+},
   "testimonials": {
     "heading": "La voix de nos clients",
     "testimonial": {
@@ -260,6 +251,29 @@
       }
     },
     "cta": "Démarrer un projet avec nous"
+  },
+  "gallery": {
+    "title": "Notre Galerie",
+     "back": "Retour à l'accueil",
+    "description": "Découvrez nos réalisations classées par expertise. Un savoir-faire unique pour chaque projet.",
+    "all": "Tous",
+    "empty": "Aucun projet trouvé pour le moment.",
+    "loading": "Chargement des projets...",
+    "categories": {
+      "interior": "Décoration Intérieure",
+      "exterior": "Aménagement Extérieur",
+      "stairs": "Escaliers & Dressings",
+      "renovation": "Rénovation Bois"
+    }
+  },
+  "project_detail": {
+    "loading": "Chargement du projet...",
+    "not_found": "Projet non trouvé",
+    "back_to_gallery": "Retour à la galerie",
+    "category_label": "Catégorie",
+    "client_label": "Client",
+    "about_project": "À propos du projet",
+    "gallery_title": "Vues du projet"
   }
 
 }

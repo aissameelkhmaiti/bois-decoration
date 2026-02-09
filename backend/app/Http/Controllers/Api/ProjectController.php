@@ -14,33 +14,30 @@ class ProjectController extends Controller
     /**
      * Liste tous les projets avec leurs relations
      */
-   public function index(Request $request)
-{
-    $query = Project::with(['category', 'images']);
+    public function index(Request $request)
+    {
+        // On commence la requête en chargeant la catégorie associée
+        $query = Project::with('category', 'images');
 
-    if ($request->filled('search')) {
-        $search = $request->search;
+        // 1. Filtrer par catégorie (ex: ?category_id=interior-decoration)
+        if ($request->has('category_id') && $request->category_id !== 'all') {
+            // Si votre colonne en DB est l'ID numérique
+            $query->where('category_id', $request->category_id);
 
-        $query->where(function ($q) use ($search) {
+        }
 
-            // 🔹 Champs du projet
-            $q->where('title', 'like', "%{$search}%")
-              ->orWhere('description', 'like', "%{$search}%")
+        // 2. Recherche textuelle (ex: ?search=cuisine)
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
 
-              ->orWhere('client','like',"%{$search}%")
+        // 3. Trier par les plus récents
+        $query->latest();
 
-              // 🔹 Catégorie
-              ->orWhereHas('category', function ($cat) use ($search) {
-                  $cat->where('name', 'like', "%{$search}%");
-              })
- 
-             ;
-        });
+        // Retourner les résultats paginés (12 par page pour une grille de 3 ou 4)
+        return $query->paginate(12);
     }
-
-    return $query->latest()->paginate(3);
-}
-
 
 
     /**

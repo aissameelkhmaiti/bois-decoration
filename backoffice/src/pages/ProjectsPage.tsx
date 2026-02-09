@@ -19,19 +19,22 @@ import AddProjectModal from '../components/projects/AddProjectModel';
 import EditProjectModal from '../components/projects/EditProjectModal';
 import DeleteProjectModal from '../components/projects/Deleteprojectmodal';
 
+import VisibilityIcon from '@mui/icons-material/Visibility'; // Icone oeil de MUI
+import ViewProjectModal from '../components/projects/ViewProjectModal';
+
 // Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
 };
-const rowVariants = { 
-  hidden: { opacity: 0, y: 20 }, 
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } 
+const rowVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 
 const ProjectsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  
+
   // Select from Redux state
   const { items, pagination, status } = useSelector((state: RootState) => state.projects);
 
@@ -44,6 +47,14 @@ const ProjectsPage: React.FC = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+
+  const openViewModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsViewModalOpen(true);
+  };
 
   // Fetch Logic (with Debounce for search)
   useEffect(() => {
@@ -59,7 +70,7 @@ const ProjectsPage: React.FC = () => {
     setSelectedProject(project);
     setIsEditModalOpen(true);
   };
-  
+
   const openDeleteModal = (project: Project) => {
     setSelectedProject(project);
     setIsDeleteModalOpen(true);
@@ -71,9 +82,9 @@ const ProjectsPage: React.FC = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6">
       {/* HEADER */}
       <div className="flex items-center gap-4 mb-8">
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1] }} 
-          transition={{ repeat: Infinity, duration: 3 }} 
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ repeat: Infinity, duration: 3 }}
           className="p-2 bg-[#A66D3B]/10 rounded-lg"
         >
           <ArchitectureIcon className="text-[#A66D3B]" sx={{ fontSize: 32 }} />
@@ -90,16 +101,16 @@ const ProjectsPage: React.FC = () => {
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => { 
-              setSearchTerm(e.target.value); 
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
               setCurrentPage(1); // Reset to page 1 on new search
             }}
             placeholder="Rechercher un projet..."
             className="w-full bg-white border border-[#d7ccc8] text-sm rounded-xl focus:border-[#A66D3B] focus:outline-none block pl-10 p-3 shadow-sm transition-all"
           />
         </div>
-        
-        <motion.button 
+
+        <motion.button
           onClick={() => setIsModalOpen(true)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
@@ -122,7 +133,7 @@ const ProjectsPage: React.FC = () => {
                 <th className="px-6 py-5 text-[#A66D3B] font-bold text-sm uppercase tracking-wider text-center">Actions</th>
               </tr>
             </thead>
-            
+
             <AnimatePresence mode="wait">
               {status === 'loading' ? (
                 <motion.tbody key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -156,16 +167,26 @@ const ProjectsPage: React.FC = () => {
                       <td className="px-6 py-4 text-gray-600 font-medium">{project.client || '—'}</td>
                       <td className="px-6 py-4">
                         <div className="flex justify-center gap-2">
-                          <motion.button 
+
+                          <motion.button
+                            onClick={() => openViewModal(project)}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-2 text-[#A66D3B] hover:bg-[#A66D3B]/10 rounded-lg transition-colors"
+                            title="Voir les détails"
+                          >
+                            <VisibilityIcon fontSize="small" />
+                          </motion.button>
+                          <motion.button
                             onClick={() => openEditModal(project)}
-                            whileHover={{ rotate: 15, scale: 1.1 }} 
+                            whileHover={{ rotate: 15, scale: 1.1 }}
                             className="p-2 text-[#8d6e63] hover:text-[#A66D3B] hover:bg-[#A66D3B]/10 rounded-lg transition-colors"
                           >
                             <EditIcon fontSize="small" />
                           </motion.button>
-                          <motion.button 
+                          <motion.button
                             onClick={() => openDeleteModal(project)}
-                            whileHover={{ rotate: -15, scale: 1.1 }} 
+                            whileHover={{ rotate: -15, scale: 1.1 }}
                             className="p-2 text-[#d32f2f] hover:text-white hover:bg-red-500 rounded-lg transition-colors"
                           >
                             <DeleteIcon fontSize="small" />
@@ -185,16 +206,16 @@ const ProjectsPage: React.FC = () => {
           <span className="text-sm text-[#8c7365]">
             Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
           </span>
-        
+
           <div className="flex items-center gap-1">
-            <button 
+            <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(prev => prev - 1)}
               className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
             >
               <ChevronLeftIcon className="w-5 h-5" />
             </button>
-        
+
             <div className="flex items-center gap-1">
               {[...Array(totalPages)].map((_, index) => {
                 const pageNum = index + 1;
@@ -203,8 +224,8 @@ const ProjectsPage: React.FC = () => {
                     key={pageNum}
                     onClick={() => setCurrentPage(pageNum)}
                     className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all
-                      ${currentPage === pageNum 
-                        ? 'bg-[#a67c52] text-white shadow-sm' 
+                      ${currentPage === pageNum
+                        ? 'bg-[#a67c52] text-white shadow-sm'
                         : 'text-[#8c7365] hover:bg-[#f5ede8] border border-transparent hover:border-[#e2d5cd]'
                       }`}
                   >
@@ -213,8 +234,8 @@ const ProjectsPage: React.FC = () => {
                 );
               })}
             </div>
-        
-            <button 
+
+            <button
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage(prev => prev + 1)}
               className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
@@ -228,18 +249,24 @@ const ProjectsPage: React.FC = () => {
 
       {/* MODALS */}
       <AddProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      
+
+      <ViewProjectModal
+        isOpen={isViewModalOpen}
+        onClose={() => { setIsViewModalOpen(false); setSelectedProject(null); }}
+        project={selectedProject}
+      />
+
       {selectedProject && (
         <>
-          <EditProjectModal 
-            isOpen={isEditModalOpen} 
-            onClose={() => { setIsEditModalOpen(false); setSelectedProject(null); }} 
-            project={selectedProject} 
+          <EditProjectModal
+            isOpen={isEditModalOpen}
+            onClose={() => { setIsEditModalOpen(false); setSelectedProject(null); }}
+            project={selectedProject}
           />
-          <DeleteProjectModal 
-            isOpen={isDeleteModalOpen} 
-            onClose={() => { setIsDeleteModalOpen(false); setSelectedProject(null); }} 
-            project={selectedProject} 
+          <DeleteProjectModal
+            isOpen={isDeleteModalOpen}
+            onClose={() => { setIsDeleteModalOpen(false); setSelectedProject(null); }}
+            project={selectedProject}
           />
         </>
       )}

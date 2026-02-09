@@ -141,7 +141,7 @@ const categories = categoriesData?.data || [];
     try {
       await dispatch(updateProject({ id: project.id, formData: data })).unwrap();
       // Rafraîchir la liste des projets
-      await dispatch(fetchProjects());
+     await dispatch(fetchProjects({}))
       onClose();
       resetForm();
     } catch (err) {
@@ -160,7 +160,7 @@ const categories = categoriesData?.data || [];
     setImagesPreview([]);
   };
 
-  const inputStyle = "w-full border border-gray-200 rounded-xl px-4 py-3 bg-white focus:border-[#A66D3B] focus:outline-none focus:ring-0 outline-none transition-all duration-200 placeholder:text-gray-400 text-gray-700";
+  const inputStyle = "w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:border-[#A66D3B] focus:outline-none focus:ring-0 outline-none transition-all bg-gray-50/50";
   const labelStyle = "block text-[13px] font-bold text-gray-600 uppercase tracking-wider mb-2 ml-1";
 
   if (!project) return null;

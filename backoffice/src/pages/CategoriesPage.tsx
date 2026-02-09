@@ -91,7 +91,7 @@ const CategoriesPage: React.FC = () => {
         <motion.button
           onClick={() => setIsAddModalOpen(true)}
           whileHover={{ scale: 1.02 }}
-          className="flex items-center gap-2 bg-[#A66D3B] text-white px-6 py-3 rounded-xl font-bold shadow-md"
+          className="flex items-center gap-2 bg-[#A66D3B] border-2 border-[#A66D3B] hover:bg-transparent text-white hover:text-[#A66D3B] px-6 py-3 rounded-xl font-bold transition-all shadow-md"
         >
           <AddIcon fontSize="small" /> Nouvelle Catégorie
         </motion.button>
@@ -145,60 +145,60 @@ const CategoriesPage: React.FC = () => {
         </div>
 
         {/* --- PAGINATION CONTROLS --- */}
-     {/* --- PAGINATION CONTROLS --- */}
-<div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-xl">
-  
-  {/* Texte informatif à gauche (optionnel, peut être supprimé si vous voulez un centrage pur) */}
-  <span className="text-sm text-[#8c7365] order-2 sm:order-1">
-    Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
-  </span>
+        {/* --- PAGINATION CONTROLS --- */}
+        <div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-xl">
 
-  {/* Groupe de navigation centré */}
-  <div className="flex items-center gap-1 order-1 sm:order-2">
-    {/* Précédent */}
-    <button 
-      disabled={currentPage === 1}
-      onClick={() => setCurrentPage(prev => prev - 1)}
-      className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
-    >
-      <ChevronLeftIcon className="w-5 h-5" />
-    </button>
+          {/* Texte informatif à gauche (optionnel, peut être supprimé si vous voulez un centrage pur) */}
+          <span className="text-sm text-[#8c7365] order-2 sm:order-1">
+            Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
+          </span>
 
-    {/* Numéros de pages */}
-    <div className="flex items-center gap-1">
-      {[...Array(totalPages)].map((_, index) => {
-        const pageNum = index + 1;
-        const isActive = currentPage === pageNum;
+          {/* Groupe de navigation centré */}
+          <div className="flex items-center gap-1 order-1 sm:order-2">
+            {/* Précédent */}
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
+              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+            >
+              <ChevronLeftIcon className="w-5 h-5" />
+            </button>
 
-        return (
-          <button
-            key={pageNum}
-            onClick={() => setCurrentPage(pageNum)}
-            className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all
-              ${isActive 
-                ? 'bg-[#a67c52] text-white shadow-sm' 
-                : 'text-[#8c7365] hover:bg-[#f5ede8] border border-transparent hover:border-[#e2d5cd]'
-              }`}
-          >
-            {pageNum}
-          </button>
-        );
-      })}
-    </div>
+            {/* Numéros de pages */}
+            <div className="flex items-center gap-1">
+              {[...Array(totalPages)].map((_, index) => {
+                const pageNum = index + 1;
+                const isActive = currentPage === pageNum;
 
-    {/* Suivant */}
-    <button 
-      disabled={currentPage === totalPages}
-      onClick={() => setCurrentPage(prev => prev + 1)}
-      className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
-    >
-      <ChevronRightIcon className="w-5 h-5" />
-    </button>
-  </div>
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all
+              ${isActive
+                        ? 'bg-[#a67c52] text-white shadow-sm'
+                        : 'text-[#8c7365] hover:bg-[#f5ede8] border border-transparent hover:border-[#e2d5cd]'
+                      }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
 
-  {/* Espace vide pour équilibrer le centrage sur desktop (order-3) */}
-  <div className="hidden sm:block w-[100px] order-3"></div>
-</div>
+            {/* Suivant */}
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+            >
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Espace vide pour équilibrer le centrage sur desktop (order-3) */}
+          <div className="hidden sm:block w-[100px] order-3"></div>
+        </div>
       </div>
 
       {/* --- MODALS --- */}

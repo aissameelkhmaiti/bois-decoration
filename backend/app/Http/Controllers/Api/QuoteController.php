@@ -35,7 +35,7 @@ class QuoteController extends Controller
     $query->latest();
 
  
-    $quotes = $query->paginate(10);
+    $quotes = $query->paginate(2);
 
     return response()->json($quotes);
 }

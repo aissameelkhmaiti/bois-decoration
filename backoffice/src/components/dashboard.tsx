@@ -14,6 +14,7 @@ import LogoutIcon from '@mui/icons-material/PowerSettingsNew';
 import MenuIcon from '@mui/icons-material/MenuOpen';
 import ChevronLeftIcon from '@mui/icons-material/West';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 // Pages
 import UsersPage from '../pages/UsersPage';
@@ -42,7 +43,7 @@ export default function DashboardLayout() {
     { text: "Vue d'ensemble", icon: <DashboardIcon fontSize="small" />, path: '' },
     { text: 'Clients', icon: <GroupIcon fontSize="small" />, path: 'users' },
     { text: 'Réalisations', icon: <WoodIcon fontSize="small" />, path: 'projects' },
-    { text: 'Demandes', icon: <StarIcon fontSize="small" />, path: 'devis' },
+    { text: 'Demandes', icon: <DescriptionIcon fontSize="small" />, path: 'devis' },
     { text: 'Collections', icon: <CategoryIcon fontSize="small" />, path: 'categories' },
     { text: 'Messages', icon: <MessageIcon fontSize="small" />, path: 'contact' },
     { text: 'Témoignages', icon: <StarIcon fontSize="small" />, path: 'reviews' },
@@ -56,9 +57,9 @@ export default function DashboardLayout() {
 
   return (
     <div className="flex min-h-screen" style={{ backgroundColor: COLORS.background }}>
-      
+
       {/* --- SIDEBAR --- */}
-      <motion.aside 
+      <motion.aside
         initial={false}
         animate={{ width: open ? 280 : 80 }}
         className="fixed inset-y-0 left-0 z-50 flex flex-col border-r-4 shadow-2xl"
@@ -68,18 +69,18 @@ export default function DashboardLayout() {
         <div className="flex items-center justify-between h-16 px-4 overflow-hidden">
           <AnimatePresence mode="wait">
             {open && (
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="text-2xl font-bold italic whitespace-nowrap" 
+                className="text-2xl font-bold italic whitespace-nowrap"
                 style={{ color: COLORS.woodGold, fontFamily: "'Dancing Script', cursive" }}
               >
                 L'Atelier
               </motion.span>
             )}
           </AnimatePresence>
-          <motion.button 
+          <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setOpen(!open)}
             className={`p-1 rounded-full hover:bg-white/10 text-white transition-all ${!open && 'mx-auto'}`}
@@ -108,7 +109,7 @@ export default function DashboardLayout() {
                 `}
               >
                 {isActive && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeTab"
                     className="absolute left-0 w-1 h-6 bg-[#A66D3B] rounded-r-full"
                   />
@@ -117,7 +118,7 @@ export default function DashboardLayout() {
                   {item.icon}
                 </div>
                 {open && (
-                  <motion.span 
+                  <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className={`ml-4 text-sm font-medium whitespace-nowrap ${isActive ? 'font-bold text-white' : ''}`}
@@ -132,34 +133,40 @@ export default function DashboardLayout() {
       </motion.aside>
 
       {/* --- MAIN CONTENT --- */}
-      <motion.div 
+      <motion.div
         animate={{ marginLeft: open ? 280 : 80 }}
         className="flex flex-col flex-1 transition-all"
       >
-        
+
         {/* --- TOPBAR --- */}
         <header className="sticky top-0 z-40 h-16 bg-white/80 backdrop-blur-md border-b border-black/5 flex items-center justify-between px-6">
           <div className="flex items-center gap-4">
-             <span className="text-xl uppercase tracking-widest font-bold text-[#A66D3B]">
-                {location.pathname.split('/').pop()?.toUpperCase() || 'DASHBOARD'}
-             </span>
+            <span className="text-xl uppercase tracking-widest font-bold text-[#A66D3B]">
+              {location.pathname.split('/').pop()?.toUpperCase() || 'DASHBOARD'}
+            </span>
           </div>
 
           {/* User Profile Menu */}
           <div className="relative">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-3 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition-colors" 
+              className="flex items-center gap-3 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition-colors"
               onClick={() => setUserMenuOpen(!userMenuOpen)}
             >
               <span className="hidden sm:block text-sm font-semibold text-[#2D2926]">
                 {user?.name || 'Utilisateur'}
               </span>
               <div className="w-10 h-10 rounded-full border-2 p-0.5" style={{ borderColor: COLORS.woodGold }}>
-                <img 
-                  className="w-full h-full rounded-full"
-                  src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=A66D3B&color=fff`} 
+                <img
+                  className="w-full h-full rounded-full object-cover"
+                  src={
+                    user?.avatar_url
+                      ? user.avatar_url
+                      : `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=A66D3B&color=fff`
+                  }
                   alt={user?.name || 'User'}
+                  // Optionnel : gérer le cas où l'URL du backend est cassée (404)
+                   
                 />
               </div>
             </motion.div>
@@ -167,22 +174,22 @@ export default function DashboardLayout() {
             {/* Dropdown Menu */}
             <AnimatePresence>
               {userMenuOpen && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-1 z-50 overflow-hidden"
                 >
-                  <button 
+                  <button
                     onClick={() => { navigate('/dashboard/profile'); setUserMenuOpen(false); }}
-                    className="w-full text-left px-4 py-3 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
+                    className="w-full text-left px-4 py-3 text-sm flex items-center gap-2 hover:bg-[#A66D3B] hover:text-white transition-colors"
                   >
-                    <AccountCircleIcon fontSize="small" className="text-[#A66D3B]" /> Mon Profil
+                    <AccountCircleIcon fontSize="small" className=" " /> Mon Profil
                   </button>
                   <hr className="my-1 border-gray-100" />
-                  <button 
+                  <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-3 text-sm flex items-center gap-2 text-[#d32f2f] hover:bg-red-50 transition-colors"
+                    className="w-full text-left px-4 py-3 text-sm flex items-center gap-2 text-[#d32f2f] hover:bg-[#A66D3B] hover:text-white transition-colors"
                   >
                     <LogoutIcon fontSize="small" /> Déconnexion
                   </button>
@@ -194,7 +201,7 @@ export default function DashboardLayout() {
 
         {/* --- PAGE CONTENT --- */}
         <main className="p-4 md:p-8">
-          <motion.div 
+          <motion.div
             layout
             className="bg-white rounded-[32px] min-h-[calc(100vh-140px)] p-4 md:p-8 shadow-sm border border-black/5 overflow-hidden"
           >

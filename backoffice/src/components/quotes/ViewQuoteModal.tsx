@@ -154,7 +154,7 @@ const ViewQuoteModal = ({ isOpen, onClose, quoteId }: Props) => {
                   href={pdfUrl} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-2.5 bg-[#A66D3B] text-white rounded-xl font-bold text-sm shadow-lg shadow-orange-900/20 hover:bg-[#8d5d32] transition-all transform hover:-translate-y-0.5"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-[#A66D3B] text-white rounded-xl font-bold text-sm shadow-lg shadow-orange-900/20 hover:bg-white hover:text-[#A66D3B] transition-all transform hover:-translate-y-0.5"
                 >
                   <DownloadIcon fontSize="small" />
                   Télécharger le PDF
