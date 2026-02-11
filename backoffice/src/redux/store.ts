@@ -5,12 +5,15 @@ import projectsReducer from './projectsSlice';
 import usersReducer from './usersSlice';
 import quoteReducer from './quotesSlice';
 
+import reviewReducer from './reviewSlice'
+
 export const store = configureStore({
   reducer: {
     categories: categoriesReducer,
     projects: projectsReducer,
     users: usersReducer,
     quotes: quoteReducer,
+    reviews: reviewReducer,
   },
 });
 

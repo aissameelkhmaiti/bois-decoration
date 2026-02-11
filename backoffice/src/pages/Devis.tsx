@@ -157,38 +157,50 @@ const QuotesPage: React.FC = () => {
         </div>
 
         {/* --- PAGINATION --- */}
-        <div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-sm text-[#8c7365]">
-            Page <strong className="text-[#5a463a]">{currentPage}</strong> sur {totalPages}
-          </span>
-          <div className="flex items-center  gap-1">
+        {/* --- BARRE DE PAGINATION --- */}
+        <div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] grid grid-cols-3 items-center rounded-b-xl">
+
+          {/* 1. Texte à gauche */}
+          <div className="text-sm text-[#8c7365]">
+            Page <strong className="text-gray-900">{currentPage}</strong> sur {totalPages}
+          </div>
+
+          {/* 2. Boutons parfaitement centrés au milieu */}
+          <div className="flex items-center justify-center gap-1">
             <button
               disabled={currentPage === 1}
-              onClick={() => setCurrentPage(prev => prev - 1)}
-              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+              onClick={() => setCurrentPage(p => p - 1)}
+              className="p-2 text-gray-300 disabled:opacity-50 hover:text-[#a67c52] transition-colors"
             >
-              <ChevronLeftIcon />
+              <ChevronLeftIcon fontSize="small" />
             </button>
 
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index + 1}
-                onClick={() => setCurrentPage(index + 1)}
-                className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all
-                  ${currentPage === index + 1 ? 'bg-[#A66D3B] text-white shadow-md' : 'text-[#8c7365] hover:bg-[#f5ede8]'}`}
-              >
-                {index + 1}
-              </button>
-            ))}
+            <div className="flex items-center gap-1">
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`w-9 h-9 rounded-lg text-sm font-bold transition-all ${currentPage === i + 1
+                      ? 'bg-[#a67c52] text-white shadow-sm'
+                      : 'text-[#8c7365] hover:bg-[#f5ede8]'
+                    }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
 
             <button
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(prev => prev + 1)}
-              className="p-2 rounded-md text-[#8c7365] hover:bg-[#f5ede8] disabled:opacity-20 transition-colors"
+              onClick={() => setCurrentPage(p => p + 1)}
+              className="p-2 text-[#8c7365] hover:text-[#a67c52] disabled:opacity-20 transition-colors"
             >
-              <ChevronRightIcon />
+              <ChevronRightIcon fontSize="small" />
             </button>
           </div>
+
+          {/* 3. Colonne vide à droite pour équilibrer le centrage */}
+          <div />
         </div>
       </div>
 
@@ -204,7 +216,7 @@ const QuotesPage: React.FC = () => {
         onClose={() => setIsViewModalOpen(false)}
         quoteId={selectedQuoteId}
       />
-      
+
       <DeleteQuoteModal
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}

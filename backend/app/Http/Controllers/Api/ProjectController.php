@@ -36,7 +36,7 @@ class ProjectController extends Controller
         $query->latest();
 
         // Retourner les résultats paginés (12 par page pour une grille de 3 ou 4)
-        return $query->paginate(12);
+        return $query->paginate(6);
     }
 
 

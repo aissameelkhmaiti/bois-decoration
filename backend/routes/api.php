@@ -22,7 +22,7 @@ Route::get('/projects/front/{id}', [ProjectController::class, 'show']);
 
 // Devis (Quotes)
 Route::post('/quotes', [QuoteController::class, 'store']);
-Route::post('/reviews', [ReviewController::class, 'store']);
+Route::apiResource('reviews', ReviewController::class);
 // Route de Polling : Vérifie si le PDF est prêt
 Route::get('/quotes/{quote}/status', function (Quote $quote) {
     return response()->json([

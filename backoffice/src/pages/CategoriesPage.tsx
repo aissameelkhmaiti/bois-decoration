@@ -144,7 +144,7 @@ const CategoriesPage: React.FC = () => {
           </table>
         </div>
 
-        {/* --- PAGINATION CONTROLS --- */}
+        
         {/* --- PAGINATION CONTROLS --- */}
         <div className="px-6 py-4 bg-[#fdfcfb] border-t border-[#f0e6e0] flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-xl">
 

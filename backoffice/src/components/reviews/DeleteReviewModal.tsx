@@ -1,45 +1,34 @@
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { deleteQuote } from '../../redux/quotesSlice';
+import { fetchReviews } from '../../redux/reviewSlice';
+import { type Review } from '../../types/review';
 import { useState } from 'react';
+import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  quote: { id: number; full_name: string } | null;
+  review: Review | null;
 }
 
-const overlayVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-const modalVariants: Variants = {
-  hidden: { scale: 0.9, opacity: 0, y: 30 },
-  visible: { 
-    scale: 1, 
-    opacity: 1, 
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 25 }
-  },
-  exit: { scale: 0.85, opacity: 0, y: 30 }
-};
-
-const DeleteQuoteModal = ({ isOpen, onClose, quote }: Props) => {
+const DeleteReviewModal = ({ isOpen, onClose, review }: Props) => {
   const dispatch = useAppDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
+  const url = 'http://localhost:8000/';
 
   const handleDelete = async () => {
-    if (!quote) return;
-    
+    if (!review) return;
+
     setIsDeleting(true);
     try {
-      await dispatch(deleteQuote(quote.id)).unwrap();
+      await axios.delete(`${url}/api/reviews/${review.id}`);
+      // On rafraîchit la liste après la suppression
+      await dispatch(fetchReviews({ page: 1, search: '' }));
       onClose();
-    } catch (error) {
-      console.error("Erreur lors de la suppression:", error);
-      alert("Impossible de supprimer ce devis.");
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors de la suppression de l’avis');
     } finally {
       setIsDeleting(false);
     }
@@ -47,55 +36,49 @@ const DeleteQuoteModal = ({ isOpen, onClose, quote }: Props) => {
 
   return (
     <AnimatePresence>
-      {isOpen && quote && (
+      {isOpen && review && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
           
-          {/* Overlay */}
+          {/* Overlay avec flou et opacité sombre */}
           <motion.div
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
-          {/* Modal Content */}
+          {/* Modal Content avec animation Spring */}
           <motion.div
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.85, opacity: 0, y: 30 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="bg-white rounded-3xl p-8 z-10 w-full max-w-md shadow-2xl relative"
           >
-            {/* Header section (Style Category) */}
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 rounded-full bg-red-100 text-red-600">
                 <DeleteIcon />
               </div>
               <h2 className="text-xl font-bold text-gray-800">
-                Supprimer le devis
+                Supprimer l'avis
               </h2>
             </div>
 
-            {/* Body Section */}
-            <p className="text-gray-600 mb-8 text-left leading-relaxed">
-              Êtes-vous sûr de vouloir supprimer le devis de 
+            <p className="text-gray-600 mb-8 text-left">
+              Êtes-vous sûr de vouloir supprimer l'avis de  
               <span className="font-semibold text-gray-800">
-                {" "}{quote.full_name}
+                {" "}{review.author}
               </span> ? 
               <br />
-              <span className="text-sm opacity-80">
-                Cette action supprimera également le fichier PDF et est irréversible.
-              </span>
+              <span className="text-sm">Cette action est irréversible.</span>
             </p>
 
-            {/* Actions Section (Alignés à droite) */}
             <div className="flex justify-end gap-3">
               <button
                 onClick={onClose}
                 disabled={isDeleting}
-                className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-black hover:text-white transition-all disabled:opacity-50"
+                className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-black hover:text-white transition disabled:opacity-50"
               >
                 Annuler
               </button>
@@ -103,7 +86,7 @@ const DeleteQuoteModal = ({ isOpen, onClose, quote }: Props) => {
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="px-5 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-black transition-all disabled:opacity-50 flex items-center gap-2 shadow-lg shadow-red-100"
+                className="px-5 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-black transition disabled:opacity-50 flex items-center gap-2"
               >
                 {isDeleting ? (
                   <>
@@ -125,4 +108,4 @@ const DeleteQuoteModal = ({ isOpen, onClose, quote }: Props) => {
   );
 };
 
-export default DeleteQuoteModal;
+export default DeleteReviewModal;
