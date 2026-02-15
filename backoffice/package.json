@@ -18,9 +18,12 @@
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.4",
     "framer-motion": "^12.34.0",
+    "laravel-echo": "^2.3.0",
     "lucide-react": "^0.563.0",
+    "pusher-js": "^8.4.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.13.0",
     "tailwindcss": "^4.1.18"

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\ContactController;
 use App\Models\Quote; // <--- TRÈS IMPORTANT : Importez le modèle
 
 /*
@@ -19,6 +20,7 @@ Route::get('/categories/front', [CategoryController::class, 'index']); // Pour c
 // Authentification
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/projects/front/{id}', [ProjectController::class, 'show']);
+Route::post('/contact', [ContactController::class, 'store']);
 
 // Devis (Quotes)
 Route::post('/quotes', [QuoteController::class, 'store']);

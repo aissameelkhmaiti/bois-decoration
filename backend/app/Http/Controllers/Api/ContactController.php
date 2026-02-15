@@ -10,14 +10,17 @@ class ContactController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'message' => 'required'
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
         ]);
 
-        $contact = Contact::create($request->all());
+        // Ici, on ne fait QUE créer le contact. 
+        // L'Observer s'occupe de l'Event et du Mail automatiquement.
+        Contact::create($validated);
 
-        return response()->json(['message' => 'Message sent successfully']);
+        return response()->json(['message' => 'Message envoyé avec succès !'], 201);
     }
 }

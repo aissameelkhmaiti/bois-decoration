@@ -11,6 +11,8 @@ services:
       - ./backend:/var/www
       - /var/www/vendor
       - /var/www/node_modules
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     ports:
       - "8000:8000"
     environment:
